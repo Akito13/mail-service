@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: "mail-service"
+  config:
+    import: "configserver:http://localhost:8071"
+  cloud:
+    config:
+      name: mail-service, common, kafka-common
+  mail:
+    host: "smtp.gmail.com"
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            protocols: "TLSv1.2"
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+            use:
+              type:
+                headers: false
