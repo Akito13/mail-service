@@ -1,6 +1,8 @@
 package com.example.bookshop.mailservice.exception;
 
+import com.example.bookshop.mailservice.dto.ConfirmationDto;
 import com.example.bookshop.mailservice.dto.ErrorResponseDto;
+import com.example.bookshop.mailservice.dto.ResponseDto;
 import com.example.bookshop.mailservice.mapper.CommonMapper;
 import jakarta.mail.MessagingException;
 import org.springframework.http.HttpStatus;
@@ -55,5 +57,16 @@ public class GlobalExceptionHandler {
                 .errors(errors)
                 .build();
         return new ResponseEntity<>(errorResponseDto, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ResponseDto> handleGlobalException(Exception exception, WebRequest request){
+        ResponseDto responseDto = ResponseDto.builder()
+                .apiPath(request.getDescription(false))
+                .message(exception.getMessage())
+                .timestamp(LocalDateTime.now())
+                .statusCode(HttpStatus.INTERNAL_SERVER_ERROR)
+                .build();
+        exception.printStackTrace();
+        return new ResponseEntity<>(responseDto, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
