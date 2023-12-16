@@ -41,18 +41,14 @@ public class GlobalConfig {
         );
     }
 
-//    @Bean
-//    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactoryString(ConsumerFactory<String, String> cf) {
-//        ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
-//        var consumerFactory = generateFactory(new StringDeserializer(), new StringDeserializer());
-//        factory.setConsumerFactory(consumerFactory);
-//        return factory;
-//    }
-
     @Bean
     public NewTopic accountConfirmSuccessTopic() {
         return TopicBuilder.name(CommonConstants.KAFKA_TOPIC_ACCOUNT_CONFIRMED).build();
     }
 
+    @Bean
+    public NewTopic passwordConfirmSuccessTopic() {
+        return TopicBuilder.name(CommonConstants.KAFKA_TOPIC_ACCOUNT_PASSWORD_CHANGE_CONFIRMED).build();
+    }
 
 }

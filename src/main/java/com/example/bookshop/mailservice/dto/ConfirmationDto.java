@@ -17,6 +17,7 @@ public class ConfirmationDto {
     private String email;
     @NotBlank(message = "Chưa nhập mã xác nhận")
     private String confirmationCode;
+    private String password;
 
     @Override
     public boolean equals(Object obj) {

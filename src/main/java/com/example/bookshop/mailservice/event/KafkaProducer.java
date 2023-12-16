@@ -18,4 +18,10 @@ public class KafkaProducer {
         accountConfirmedTemplate.send(CommonConstants.KAFKA_TOPIC_ACCOUNT_CONFIRMED, email);
         System.out.println("SENT ACCOUNT_CONFIRMED EVENT WITH " + email + " FOR DATA");
     }
+
+    public void notifyAccountPasswordConfirmed(String email, String pwd) {
+        String info = email + ":" + pwd;
+        accountConfirmedTemplate.send(CommonConstants.KAFKA_TOPIC_ACCOUNT_PASSWORD_CHANGE_CONFIRMED, info);
+        System.out.println("SENT PASSWORD CHANGE EVENT WITH " + info + " AS DATA");
+    }
 }

@@ -15,5 +15,6 @@ import java.util.Map;
 public class AccountConfirmation {
     private String email;
     private String confirmationCode;
+    private String pwd;
     private LocalDateTime expiration;
 }
